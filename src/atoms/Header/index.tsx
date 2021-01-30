@@ -9,8 +9,8 @@ interface Props {
 const Header = ({buttonList}: Props) => {
     return (
         <ButtonGroup color="primary" aria-label="outlined primary button group">
-            {buttonList.map(button => (
-                <Button onClick={button.onClick}>{button.name}</Button>
+            {buttonList.map((button, index) => (
+                <Button key={index} onClick={button.onClick}>{button.name}</Button>
             ))}
         </ButtonGroup>
     );

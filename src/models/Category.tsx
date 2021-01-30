@@ -1,7 +1,9 @@
-import {ReactNode} from "react";
+import React, {ReactNode} from "react";
 
-export interface Library {
-    icon: ReactNode;
+export interface Routes {
     path: string;
-    primaryText: string;
+    icon?: ReactNode;
+    primaryText?: string;
+    exact?: boolean;
+    main?: ReactNode;
 }
