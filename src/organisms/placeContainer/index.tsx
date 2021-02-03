@@ -1,35 +1,41 @@
+import React, { ReactNode, useEffect, useState } from "react";
 import Container from "../container";
-import React from "react";
 
 const PlaceContainer = () => {
-    const handleOpenYears = () => {
+  const [content, setContent] = useState<ReactNode | undefined>(null);
 
-    }
+  useEffect(() => {
+    handleOpenAll();
+  }, []);
 
-    const handleOpenMonths = () => {
+  const handleOpenYears = () => {
+    const yearGrid = <>grid</>;
+    setContent(yearGrid);
+  };
 
-    }
+  const handleOpenMonths = () => {
+    const monthGrid = <>grid</>;
+    setContent(monthGrid);
+  };
 
-    const handleOpenDays = () => {
+  const handleOpenDays = () => {
+    const dayGrid = <>grid</>;
+    setContent(dayGrid);
+  };
 
-    }
+  const handleOpenAll = () => {
+    const allGrid = <>all grid</>;
+    setContent(allGrid);
+  };
 
-    const handleOpenAll = () => {
+  const buttonList = [
+    { name: "Years", onClick: handleOpenYears },
+    { name: "Months", onClick: handleOpenMonths },
+    { name: "Days", onClick: handleOpenDays },
+    { name: "All Photos", onClick: handleOpenAll },
+  ];
 
-    }
-
-    const buttonList = [
-        {name: 'Years', onClick: handleOpenYears},
-        {name: 'Months', onClick: handleOpenMonths},
-        {name: 'Days', onClick: handleOpenDays},
-        {name: 'All Photos', onClick: handleOpenAll}
-    ];
-
-    return (
-        <Container buttonList={buttonList}>
-            container
-        </Container>
-    );
+  return <Container buttonList={buttonList}>{content}</Container>;
 };
 
 export default PlaceContainer;

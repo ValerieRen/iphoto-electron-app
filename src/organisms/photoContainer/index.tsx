@@ -1,21 +1,29 @@
-import React from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import Container from "../container";
 
 const PhotoContainer = () => {
-    const handleOpenMap = () => {
+  const [content, setContent] = useState<ReactNode | undefined>(null);
 
-    }
+  useEffect(() => {
+    handleOpenMap();
+  }, []);
 
-    const handleOpenGrid = () => {
+  const handleOpenMap = () => {
+    const map = <>map grid</>;
+    setContent(map);
+  };
 
-    }
-    const buttonList = [{name: 'Map', onClick: handleOpenMap}, {name: 'Grid', onClick: handleOpenGrid}];
+  const handleOpenGrid = () => {
+    const grid = <>grid</>;
+    setContent(grid);
+  };
 
-    return (
-        <Container buttonList={buttonList}>
-            container
-        </Container>
-    );
-}
+  const buttonList = [
+    { name: "Map", onClick: handleOpenMap },
+    { name: "Grid", onClick: handleOpenGrid },
+  ];
+
+  return <Container buttonList={buttonList}>{content}</Container>;
+};
 
 export default PhotoContainer;
