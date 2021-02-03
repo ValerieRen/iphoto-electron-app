@@ -1,9 +1,9 @@
-import React, {ReactNode} from "react";
+import { ReactNode } from "react";
 
 export interface Routes {
-    path: string;
-    icon?: ReactNode;
-    primaryText?: string;
-    exact?: boolean;
-    main?: ReactNode;
+  path: string;
+  icon?: ReactNode;
+  primaryText?: string;
+  exact?: boolean;
+  main?: ReactNode;
 }

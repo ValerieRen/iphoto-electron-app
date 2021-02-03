@@ -1,4 +1,4 @@
 export interface HeaderButtons {
-    name: string;
-    onClick: () => void;
+  name: string;
+  onClick: () => void;
 }
