@@ -1,36 +1,38 @@
 {
-  "images": [
-    {
-      "path": "/resource/DSCN0012.jpg",
-      "id": "1"
-    },
-    {
-      "path": "/resource/DSCN0021.jpg",
-      "id": "2"
-    },
-    {
-      "path": "/resource/DSCN0025.jpg",
-      "id": "3"
-    },
-    {
-      "path": "/resource/DSCN0027.jpg",
-      "id": "4"
-    },
-    {
-      "path": "/resource/DSCN0029.jpg",
-      "id": "5"
-    },
-    {
-      "path": "/resource/IMG_9170.jpg",
-      "id": "6"
-    },
-    {
-      "path": "/resource/IMG_9386.JPG",
-      "id": "7"
-    },
-    {
-      "path": "/resource/IMG_9444.JPG",
-      "id": "8"
-    }
-  ]
+  "images": {
+    "data": [
+      {
+        "path": "/resource/DSCN0012.jpg",
+        "id": "1"
+      },
+      {
+        "path": "/resource/DSCN0021.jpg",
+        "id": "2"
+      },
+      {
+        "path": "/resource/DSCN0025.jpg",
+        "id": "3"
+      },
+      {
+        "path": "/resource/DSCN0027.jpg",
+        "id": "4"
+      },
+      {
+        "path": "/resource/DSCN0029.jpg",
+        "id": "5"
+      },
+      {
+        "path": "/resource/IMG_9170.jpg",
+        "id": "6"
+      },
+      {
+        "path": "/resource/IMG_9386.JPG",
+        "id": "7"
+      },
+      {
+        "path": "/resource/IMG_9444.JPG",
+        "id": "8"
+      }
+    ]
+  }
 }

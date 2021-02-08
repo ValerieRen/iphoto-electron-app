@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const express = require('express');
-const app = express();
-
+const cors = require('cors');
 const db = require('./db.json');
+const app = express();
+app.use(cors());
 
-app.get('api/images', function (req, res) {
+app.get('/api/images', function (req, res) {
   res.send(db.images);
 });
 
