@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { deserialize } from "jsonapi-fractal";
 
-import { Images } from "../models";
+import { Image } from "../models";
 import { RemoteData, Status } from "./RemoteData";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT;
@@ -10,10 +9,10 @@ axios.defaults.headers.get["Accept"] = "application/vnd.api+json";
 axios.defaults.headers.post["Accept"] = "application/json";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
-const useGetImages = () => useAPI<Error, Images>("/api/images", "");
+export const useGetImages = () => useAPI<Error, Image[]>("/api/images", "");
 
-const useGetImage = (imgId: string) =>
-  useAPI<Error, Images>("/api/image", imgId);
+export const useGetImage = (imgId: string) =>
+  useAPI<Error, Image>("/api/image/:id", imgId);
 
 const useAPI = <E, D>(url: string, entityId: string) => {
   const [remoteData, setRemoteData] = useState<RemoteData<E, D>>({
@@ -28,14 +27,13 @@ const useAPI = <E, D>(url: string, entityId: string) => {
         setRemoteData({ status: Status.LOADING });
 
         const { data } = await axios.get(`${url}/${entityId}`);
-        const deserializedData: D = deserialize(data, {
-          changeCase: "camelCase",
-        });
-
+        console.log("data", data);
+        // const deserializedData: D = deserialize(data);
+        // console.log("deserializedData", deserializedData);
         if (!isCanceled) {
           setRemoteData({
             status: Status.SUCCESS,
-            data: deserializedData,
+            data: data,
           });
         }
       } catch (error) {
@@ -53,9 +51,4 @@ const useAPI = <E, D>(url: string, entityId: string) => {
   }, [url, entityId]);
 
   return [remoteData];
-};
-
-export default {
-  useGetImages,
-  useGetImage,
 };

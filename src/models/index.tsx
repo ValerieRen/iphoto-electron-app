@@ -1,3 +1,3 @@
-export * from "./Category";
+export * from "./Sider";
 export * from "./Header";
 export * from "./ImageResponse";

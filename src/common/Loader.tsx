@@ -1,9 +1,9 @@
 import React from "react";
-import { Spin } from "antd";
+import LoopIcon from "@material-ui/icons/Loop";
 
 const Loader = () => (
   <div className="loader">
-    <Spin size="large" />
+    <LoopIcon fontSize="large" />
   </div>
 );
 

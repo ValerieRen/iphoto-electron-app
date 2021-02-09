@@ -1,8 +1,14 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import Container from "../container";
+import { foldRemoteData, useGetImages } from "../../api";
+import NoData from "../../common/NoData";
+import Loader from "../../common/Loader";
+import Failure from "../../common/Failure";
+import ImageList from "../../atoms/ImageList";
 
 const PhotoContainer = () => {
   const [content, setContent] = useState<ReactNode | undefined>(null);
+  const [imageRemoteData] = useGetImages();
 
   useEffect(() => {
     handleOpenMap();
@@ -14,7 +20,13 @@ const PhotoContainer = () => {
   };
 
   const handleOpenGrid = () => {
-    const grid = <>grid</>;
+    const grid = foldRemoteData(
+      imageRemoteData,
+      () => <NoData />,
+      () => <Loader />,
+      (error) => <Failure error={error} />,
+      (images) => <ImageList images={images} />
+    );
     setContent(grid);
   };
 

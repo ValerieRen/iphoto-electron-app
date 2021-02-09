@@ -11,12 +11,12 @@ import {
 import { Link } from "react-router-dom";
 import { Routes } from "../../models";
 
-interface CategoryProps {
+interface SiderProps {
   routes: Routes[];
   title: string;
 }
 
-const Category = ({ title, routes }: CategoryProps) => {
+const Sider = ({ title, routes }: SiderProps) => {
   const classes = useStyles();
   const dense = true;
   return (
@@ -65,4 +65,4 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default Category;
+export default Sider;

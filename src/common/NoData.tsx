@@ -1,9 +1,9 @@
 import React from "react";
-import { Empty } from "antd";
+import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
 
 const NoData = () => (
   <div className="no-data">
-    <Empty />;
+    <HourglassEmptyIcon />;
   </div>
 );
 

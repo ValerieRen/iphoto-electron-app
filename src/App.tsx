@@ -1,18 +1,18 @@
 import React from "react";
 import "./App.css";
 import { Grid } from "@material-ui/core";
-import Category from "./organisms/categories";
+import Sider from "./organisms/Sider";
 import { Route, Switch } from "react-router-dom";
 import PhotoContainer from "./organisms/photoContainer";
 import PlaceContainer from "./organisms/placeContainer";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { PhotoLibraryOutlined, PlaceOutlined } from "@material-ui/icons";
 import {
-  CATEGORY_LIBRARY_PHOTOS,
-  CATEGORY_LIBRARY_PLACES,
-  CATEGORY_LIBRARY_TITLE,
+  SIDER_LIBRARY_PHOTOS,
+  SIDER_LIBRARY_PLACES,
+  SIDER_LIBRARY_TITLE,
 } from "./constants/layout";
-import { API, foldRemoteData } from "./api";
+import NoRoutePage from "./common/NoRoutePage";
 
 const routes = [
   {
@@ -29,7 +29,7 @@ const routes = [
         style={{ backgroundColor: "white" }}
       />
     ),
-    primaryText: CATEGORY_LIBRARY_PHOTOS,
+    primaryText: SIDER_LIBRARY_PHOTOS,
     main: <PhotoContainer />,
   },
   {
@@ -41,30 +41,22 @@ const routes = [
         style={{ backgroundColor: "white" }}
       />
     ),
-    primaryText: CATEGORY_LIBRARY_PLACES,
+    primaryText: SIDER_LIBRARY_PLACES,
     main: <PlaceContainer />,
   },
   {
     path: "*",
-    main: <div>404 Not found!</div>,
+    main: <NoRoutePage />,
   },
 ];
 
 const App = () => {
   const classes = useStyles();
-  const res = foldRemoteData(
-    API.useGetImages()[0],
-    () => <div />,
-    () => <div />,
-    (error) => <div />,
-    () => <PhotoContainer />
-  );
-  console.log(res);
   return (
     <div className="App">
       <Grid container spacing={3}>
         <Grid item xs={3} className={classes.nav}>
-          <Category title={CATEGORY_LIBRARY_TITLE} routes={routes} />
+          <Sider title={SIDER_LIBRARY_TITLE} routes={routes} />
         </Grid>
         <Grid item xs={9} className={classes.container}>
           <Switch>
