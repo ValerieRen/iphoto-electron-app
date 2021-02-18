@@ -10,7 +10,7 @@ In the project directory, you can run:
 
 clean up current package and reinstall the npm packages
 
-### `npm run start` 
+### `npm start` 
 
 Runs the app in the development mode.\
 The client side will be listening to the port 3000, \
