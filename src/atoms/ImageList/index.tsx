@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 import { GridList, GridListTile } from "@material-ui/core";
 import { Image } from "../../models";
@@ -9,14 +9,24 @@ interface Props {
 
 const ImageList = ({ images }: Props) => {
   const classes = useStyles();
+  const [urls, setUrls] = useState<any[]>([]);
+
+  useEffect(() => {
+    images.map((image) => {
+      import(`../../resource/${image.src}`).then((url) => {
+        console.log(urls, url.default);
+        setUrls([...urls, url.default]);
+      });
+    });
+  }, []);
   // const handleOpenImage = (image: string) => {};
 
   return (
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
-        {images.map((image) => (
-          <GridListTile key={image.id}>
-            <img src={`${image.path}`} alt="" />
+        {urls.map((url, index) => (
+          <GridListTile key={index} cols={1}>
+            <img src={url} />
           </GridListTile>
         ))}
       </GridList>
@@ -31,14 +41,10 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: "wrap",
       justifyContent: "space-around",
       overflow: "hidden",
-      backgroundColor: theme.palette.background.paper,
     },
     gridList: {
       width: 500,
       height: 450,
-    },
-    icon: {
-      color: "rgba(255, 255, 255, 0.54)",
     },
   })
 );

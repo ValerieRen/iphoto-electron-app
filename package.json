@@ -24,6 +24,7 @@
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
+    "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "concurrently": "^5.3.0",
