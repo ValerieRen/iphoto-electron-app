@@ -53,37 +53,42 @@ const routes = [
 const App = () => {
   const classes = useStyles();
   return (
-    <div className="App">
-      <Grid container spacing={3}>
-        <Grid item xs={3} className={classes.nav}>
-          <Sider title={SIDER_LIBRARY_TITLE} routes={routes} />
-        </Grid>
-        <Grid item xs={9} className={classes.container}>
-          <Switch>
-            {routes.map((route, index) => (
-              <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                children={route.main}
-              />
-            ))}
-          </Switch>
-        </Grid>
-      </Grid>
+    <div className={classes.root}>
+      <div className={classes.nav}>
+        <Sider title={SIDER_LIBRARY_TITLE} routes={routes} />
+      </div>
+      <div className={classes.container}>
+        <Switch>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              children={route.main}
+            />
+          ))}
+        </Switch>
+      </div>
     </div>
   );
 };
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      display: "flex",
+    },
     nav: {
+      minWidth: "200px",
+      maxWidth: "250px",
       height: window.screen.height,
       backgroundColor: theme.palette.background.default,
     },
     container: {
+      flexGrow: 1,
       height: window.screen.height,
-      // backgroundColor: theme.palette.background.default,
+      overflow: "auto",
+      justifySelf: "center",
     },
   })
 );

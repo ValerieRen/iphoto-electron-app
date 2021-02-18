@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
-import { GridList, GridListTile } from "@material-ui/core";
+import {
+  Theme,
+  createStyles,
+  makeStyles,
+  useTheme,
+} from "@material-ui/core/styles";
+import { GridList, GridListTile, useMediaQuery } from "@material-ui/core";
 import { Image } from "../../models";
 
 interface Props {
@@ -8,27 +13,61 @@ interface Props {
 }
 
 const ImageList = ({ images }: Props) => {
+  const theme = useTheme();
+  const screenExtraLarge = useMediaQuery(theme.breakpoints.only("xl"));
+  const screenLarge = useMediaQuery(theme.breakpoints.only("lg"));
+  const screenMedium = useMediaQuery(theme.breakpoints.only("md"));
+  const screenSmall = useMediaQuery(theme.breakpoints.only("sm"));
+  const screenExtraSmall = useMediaQuery(theme.breakpoints.only("xs"));
+  const screenNarrow = useMediaQuery("(max-width:340px)");
+
   const classes = useStyles();
   const [urls, setUrls] = useState<any[]>([]);
 
   useEffect(() => {
     images.map((image) => {
       import(`../../resource/${image.src}`).then((url) => {
-        console.log(urls, url.default);
-        setUrls([...urls, url.default]);
+        if (urls.indexOf(url.default) === -1) {
+          setUrls((urls) => [...urls, url.default]);
+        }
       });
     });
   }, []);
   // const handleOpenImage = (image: string) => {};
 
+  const getGridListCols = () => {
+    if (screenExtraLarge) {
+      return 6;
+    } else if (screenNarrow) {
+      return 1;
+    } else if (screenLarge) {
+      return 5;
+    } else if (screenMedium) {
+      return 4;
+    } else if (screenSmall) {
+      return 3;
+    } else if (screenExtraSmall) {
+      return 2;
+    } else {
+      return 3;
+    }
+  };
+
   return (
     <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList}>
-        {urls.map((url, index) => (
-          <GridListTile key={index} cols={1}>
-            <img src={url} />
-          </GridListTile>
-        ))}
+      <GridList
+        cellHeight={180}
+        cols={getGridListCols()}
+        spacing={15}
+        className={classes.gridList}
+      >
+        {urls.length === 0 && <span>No Photos!</span>}
+        {urls.length > 0 &&
+          urls.map((url, index) => (
+            <GridListTile key={index} cols={1}>
+              <img src={url} />
+            </GridListTile>
+          ))}
       </GridList>
     </div>
   );
@@ -43,8 +82,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: "hidden",
     },
     gridList: {
-      width: 500,
-      height: 450,
+      width: "95%",
     },
   })
 );

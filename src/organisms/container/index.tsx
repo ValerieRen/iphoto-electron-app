@@ -13,13 +13,19 @@ const Container = ({ children, buttonList }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Grid item xs={12}>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+      >
         <div className={classes.header}>
           <Header buttonList={buttonList} />
         </div>
-      </Grid>
-      <Grid item xs={12} className={classes.container}>
-        <div>{children}</div>
+        <div className={classes.container}>
+          <div>{children}</div>
+        </div>
       </Grid>
     </div>
   );
@@ -33,7 +39,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     header: {
       margin: theme.spacing(2, 0, 0),
-      justifyContent: "center",
     },
     container: {
       margin: theme.spacing(5, 0, 5),

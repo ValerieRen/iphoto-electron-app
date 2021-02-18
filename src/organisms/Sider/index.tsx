@@ -49,10 +49,11 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: "100%",
+      justifyContent: "center",
       backgroundColor: theme.palette.background.paper,
     },
     title: {
-      margin: theme.spacing(2, 0, 0),
+      margin: theme.spacing(2, 3, 0),
     },
     list: {},
     item: {
