@@ -23,9 +23,7 @@ const Container = ({ children, buttonList }: Props) => {
         <div className={classes.header}>
           <Header buttonList={buttonList} />
         </div>
-        <div className={classes.container}>
-          <div>{children}</div>
-        </div>
+        <div className={classes.container}>{children}</div>
       </Grid>
     </div>
   );
@@ -41,6 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(2, 0, 0),
     },
     container: {
+      width: "90%",
       margin: theme.spacing(5, 0, 5),
     },
   })

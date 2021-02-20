@@ -5,9 +5,18 @@ import NoData from "../../common/NoData";
 import Loader from "../../common/Loader";
 import Failure from "../../common/Failure";
 import ImageList from "../../atoms/ImageList";
+import { fromLonLat } from "ol/proj";
+import Map from "../../atoms/Map";
+import MapControl from "../../atoms/Map/MapControl";
+import MapFullScreenControl from "../../atoms/Map/MapFullScreenControl";
+import MapLayers from "../../atoms/Map/MapLayers";
+import MapTileLayer from "../../atoms/Map/MapTileLayer";
+import * as olSource from "ol/source";
 
 const PhotoContainer = () => {
   const [content, setContent] = useState<ReactNode | undefined>(null);
+  const [center, setCenter] = useState<number[]>([-94.9065, 38.9884]);
+  const [zoom, setZoom] = useState<number>(9);
   const [imageRemoteData] = useGetImages();
 
   useEffect(() => {
@@ -15,7 +24,18 @@ const PhotoContainer = () => {
   }, []);
 
   const handleOpenMap = () => {
-    const map = <>map grid</>;
+    const map = (
+      <div>
+        <Map center={fromLonLat(center)} zoom={zoom}>
+          <MapLayers>
+            <MapTileLayer source={new olSource.OSM()} zIndex={0} />
+          </MapLayers>
+          <MapControl>
+            <MapFullScreenControl />
+          </MapControl>
+        </Map>
+      </div>
+    );
     setContent(map);
   };
 
