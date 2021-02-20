@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import { Grid } from "@material-ui/core";
 import Sider from "./organisms/Sider";
 import { Route, Switch } from "react-router-dom";
 import PhotoContainer from "./organisms/photoContainer";

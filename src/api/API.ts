@@ -27,9 +27,7 @@ const useAPI = <E, D>(url: string, entityId: string) => {
         setRemoteData({ status: Status.LOADING });
 
         const { data } = await axios.get(`${url}/${entityId}`);
-        console.log("data", data);
-        // const deserializedData: D = deserialize(data);
-        // console.log("deserializedData", deserializedData);
+
         if (!isCanceled) {
           setRemoteData({
             status: Status.SUCCESS,
