@@ -25,7 +25,7 @@ const PhotoContainer = () => {
 
   const handleOpenMap = () => {
     const map = (
-      <div>
+      <div style={{ height: "90%" }}>
         <Map center={fromLonLat(center)} zoom={zoom}>
           <MapLayers>
             <MapTileLayer source={new olSource.OSM()} zIndex={0} />
