@@ -12,6 +12,7 @@ import MapFullScreenControl from "../../atoms/Map/MapFullScreenControl";
 import MapLayers from "../../atoms/Map/MapLayers";
 import MapTileLayer from "../../atoms/Map/MapTileLayer";
 import * as olSource from "ol/source";
+import MapMarkerLayer from "../../atoms/Map/MapMarkerLayer";
 
 const PhotoContainer = () => {
   const [content, setContent] = useState<ReactNode | undefined>(null);
@@ -28,7 +29,8 @@ const PhotoContainer = () => {
       <div style={{ height: "90%" }}>
         <Map center={fromLonLat(center)} zoom={zoom}>
           <MapLayers>
-            <MapTileLayer source={new olSource.OSM()} zIndex={0} />
+            <MapTileLayer source={new olSource.OSM()} zIndex={1} />
+            <MapMarkerLayer coordinate={center} zIndex={0} />
           </MapLayers>
           <MapControl>
             <MapFullScreenControl />
