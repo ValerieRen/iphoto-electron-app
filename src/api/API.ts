@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { Image } from "../models";
+import { ImageModel } from "../models";
 import { RemoteData, Status } from "./RemoteData";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT;
@@ -9,10 +9,11 @@ axios.defaults.headers.get["Accept"] = "application/vnd.api+json";
 axios.defaults.headers.post["Accept"] = "application/json";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
-export const useGetImages = () => useAPI<Error, Image[]>("/api/images", "");
+export const useGetImages = () =>
+  useAPI<Error, ImageModel[]>("/api/images", "");
 
 export const useGetImage = (imgId: string) =>
-  useAPI<Error, Image>("/api/image/:id", imgId);
+  useAPI<Error, ImageModel>("/api/image/:id", imgId);
 
 const useAPI = <E, D>(url: string, entityId: string) => {
   const [remoteData, setRemoteData] = useState<RemoteData<E, D>>({

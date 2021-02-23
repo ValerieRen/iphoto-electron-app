@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, ReactNode } from "react";
 import "./Map.css";
-import MapContext from "./MapContext";
+import MapContext from "../../context/MapContext";
 import * as ol from "ol";
 
 interface MapProps {

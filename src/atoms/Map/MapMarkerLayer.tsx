@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import MapContext from "../Map/MapContext";
+import MapContext from "../../context/MapContext";
 import Overlay from "ol/Overlay";
 import { fromLonLat } from "ol/proj";
 import OverlayPositioning from "ol/OverlayPositioning";
@@ -10,7 +10,7 @@ interface MarkerMarkerProps {
   zIndex: number;
 }
 
-const MapMarkerLayer = ({ coordinate, zIndex = 0 }: MarkerMarkerProps) => {
+const MapMarkerLayer = ({ coordinate }: MarkerMarkerProps) => {
   const classes = useStyles();
   const { map } = useContext(MapContext);
 

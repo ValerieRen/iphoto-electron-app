@@ -6,10 +6,10 @@ import {
   useTheme,
 } from "@material-ui/core/styles";
 import { GridList, GridListTile, useMediaQuery } from "@material-ui/core";
-import { Image } from "../../models";
+import { ImageModel } from "../../models";
 
 interface Props {
-  images: Image[];
+  images: ImageModel[];
 }
 
 const ImageList = ({ images }: Props) => {

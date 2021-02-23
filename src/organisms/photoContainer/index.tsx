@@ -13,6 +13,7 @@ import MapLayers from "../../atoms/Map/MapLayers";
 import MapTileLayer from "../../atoms/Map/MapTileLayer";
 import * as olSource from "ol/source";
 import MapMarkerLayer from "../../atoms/Map/MapMarkerLayer";
+import { getCoordinatesByImages } from "../../utils/maps";
 
 const PhotoContainer = () => {
   const [content, setContent] = useState<ReactNode | undefined>(null);
@@ -25,12 +26,27 @@ const PhotoContainer = () => {
   }, []);
 
   const handleOpenMap = () => {
+    const getImageMarkers = foldRemoteData(
+      imageRemoteData,
+      () => <NoData />,
+      () => <Loader />,
+      (error) => <Failure error={error} />,
+      (images) => {
+        const coordinates = getCoordinatesByImages(images);
+        return (
+          // <MapMarkerLayer coordinates={coordinates} images={images} zIndex={0} />
+          <div />
+        );
+      }
+    );
+
     const map = (
       <div style={{ height: "90%" }}>
         <Map center={fromLonLat(center)} zoom={zoom}>
           <MapLayers>
             <MapTileLayer source={new olSource.OSM()} zIndex={1} />
             <MapMarkerLayer coordinate={center} zIndex={0} />
+            {getImageMarkers}
           </MapLayers>
           <MapControl>
             <MapFullScreenControl />
