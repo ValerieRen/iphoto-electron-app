@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, ReactNode } from "react";
+import React, { useRef, useState, useEffect, ReactNode, memo } from "react";
 import "./Map.css";
 import MapContext from "../../context/MapContext";
 import * as ol from "ol";
@@ -52,4 +52,4 @@ const Map = ({ children, zoom, center }: MapProps) => {
   );
 };
 
-export default Map;
+export default memo(Map);

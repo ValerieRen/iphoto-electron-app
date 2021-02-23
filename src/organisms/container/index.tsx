@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, memo } from "react";
 import Header from "../../atoms/Header";
 import { HeaderButtons } from "../../models";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
@@ -45,4 +45,4 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default Container;
+export default memo(Container);

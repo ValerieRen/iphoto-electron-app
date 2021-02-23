@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   Grid,
@@ -66,4 +66,4 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default Sider;
+export default memo(Sider);

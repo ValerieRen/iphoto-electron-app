@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, memo } from "react";
 import MapContext from "../../context/MapContext";
 import OLTileLayer from "ol/layer/Tile";
 
@@ -31,4 +31,4 @@ const MapTileLayer = ({ source, zIndex = 0 }: TileLayerProps) => {
   return null;
 };
 
-export default MapTileLayer;
+export default memo(MapTileLayer);

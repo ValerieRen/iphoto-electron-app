@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState, memo } from "react";
 import Container from "../container";
 
 const PlaceContainer = () => {
@@ -38,4 +38,4 @@ const PlaceContainer = () => {
   return <Container buttonList={buttonList}>{content}</Container>;
 };
 
-export default PlaceContainer;
+export default memo(PlaceContainer);

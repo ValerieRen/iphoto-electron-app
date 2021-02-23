@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import {
   Theme,
   createStyles,
@@ -87,4 +87,4 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default ImageList;
+export default memo(ImageList);

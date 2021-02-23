@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, memo } from "react";
 import { FullScreen } from "ol/control";
 import MapContext from "../../context/MapContext";
 
@@ -18,4 +18,4 @@ const MapFullScreenControl = () => {
   return null;
 };
 
-export default MapFullScreenControl;
+export default memo(MapFullScreenControl);

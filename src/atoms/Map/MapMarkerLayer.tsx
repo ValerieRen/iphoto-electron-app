@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, memo } from "react";
 import MapContext from "../../context/MapContext";
 import Overlay from "ol/Overlay";
 import { fromLonLat } from "ol/proj";
@@ -68,4 +68,4 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default MapMarkerLayer;
+export default memo(MapMarkerLayer);
