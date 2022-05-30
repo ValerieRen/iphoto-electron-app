@@ -62,7 +62,8 @@ const ImageList = ({ images }: Props) => {
         className={classes.gridList}
       >
         {urls.length === 0 && <span>No Photos!</span>}
-        {urls.length > 0 &&
+        {urls &&
+          urls.length > 0 &&
           urls.map((url, index) => (
             <GridListTile key={index} cols={1}>
               <img src={url} />

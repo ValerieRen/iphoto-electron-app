@@ -1,24 +1,24 @@
-import React, { useContext, useEffect, memo } from "react";
+import React, { memo, useContext, useEffect } from "react";
 import MapContext from "../../context/MapContext";
 import Overlay from "ol/Overlay";
 import { fromLonLat } from "ol/proj";
 import OverlayPositioning from "ol/OverlayPositioning";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-interface MarkerMarkerProps {
-  coordinate: number[];
-  zIndex: number;
+interface MapMarkerProps {
+  combo: any;
+  zIndex?: number;
 }
 
-const MapMarkerLayer = ({ coordinate }: MarkerMarkerProps) => {
+const MapMarkerLayer = ({ combo }: MapMarkerProps) => {
   const classes = useStyles();
   const { map } = useContext(MapContext);
 
   useEffect(() => {
     if (!map) return;
-
+    console.log("combo.coordinate", combo.coordinate);
     const marker = new Overlay({
-      position: fromLonLat(coordinate),
+      position: fromLonLat(combo.coordinate),
       positioning: OverlayPositioning.CENTER_CENTER,
       element: document.getElementById("marker") as HTMLElement,
       stopEvent: false,
@@ -37,12 +37,13 @@ const MapMarkerLayer = ({ coordinate }: MarkerMarkerProps) => {
     <div id="marker">
       <img
         src="https://www.hdwallpaper.nu/wp-content/uploads/2015/07/Ocean-wave-stock-image_WEB.jpg"
+        // src={`../resource/${combo.src}`}
         className={classes.parentImg}
       />
-      <img
-        src="https://www.technocrazed.com/wp-content/uploads/2015/12/HD-purple-wallpaper-image-to-use-as-background-121.jpg"
-        className={classes.childImg}
-      />
+      {/*<img*/}
+      {/*  src="https://www.technocrazed.com/wp-content/uploads/2015/12/HD-purple-wallpaper-image-to-use-as-background-121.jpg"*/}
+      {/*  className={classes.childImg}*/}
+      {/*/>*/}
     </div>
   );
 };

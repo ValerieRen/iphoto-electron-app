@@ -5,6 +5,4 @@ const rootReducer = combineReducers({
   image: imageReducer,
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
-
 export default rootReducer;

@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from "redux";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter as Router } from "react-router-dom";
-import AppState from "./store";
+import reducer from "./store";
 
-const store = createStore(combineReducers<any>(AppState), applyMiddleware(thunk))
-;
+const store = createStore(reducer, applyMiddleware(thunk));
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>

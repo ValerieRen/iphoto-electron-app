@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState, memo } from "react";
 import Container from "../container";
-import { foldRemoteData, useGetImages } from "../../api";
+import { foldRemoteData, useGetImages, useGetImagesData } from "../../api";
 import NoData from "../../common/NoData";
 import Loader from "../../common/Loader";
 import Failure from "../../common/Failure";
@@ -14,38 +14,39 @@ import MapTileLayer from "../../atoms/Map/MapTileLayer";
 import * as olSource from "ol/source";
 import MapMarkerLayer from "../../atoms/Map/MapMarkerLayer";
 import { getCoordinatesByImages } from "../../utils/maps";
+import { getMovies } from "../../store/image/actions";
+import { ImageModel } from "../../models";
 
 const PhotoContainer = () => {
   const [content, setContent] = useState<ReactNode | undefined>(null);
   const [center, setCenter] = useState<number[]>([-94.9065, 38.9884]);
   const [zoom, setZoom] = useState<number>(9);
-  const [imageRemoteData] = useGetImages();
-
+  const [imageRemote] = useGetImages();
+  const [imageRemoteData] = useGetImagesData();
+  console.log("imageRemoteData", imageRemoteData);
   useEffect(() => {
+    getMovies();
     handleOpenMap();
   }, []);
 
   const handleOpenMap = () => {
-    const getImageMarkers = foldRemoteData(
-      imageRemoteData,
-      () => <NoData />,
-      () => <Loader />,
-      (error) => <Failure error={error} />,
-      (images) => {
-        const coordinates = getCoordinatesByImages(images);
-        return (
-          // <MapMarkerLayer coordinates={coordinates} images={images} zIndex={0} />
-          <div />
-        );
-      }
-    );
+    const combos = getCoordinatesByImages(imageRemoteData);
+    console.log("combos", combos);
+
+    const getImageMarkers =
+      combos.length > 0
+        ? combos.map((combo, index) => {
+            console.log("combo", combo);
+            return <MapMarkerLayer combo={combo} />;
+          })
+        : null;
 
     const map = (
       <div style={{ height: "90%" }}>
         <Map center={fromLonLat(center)} zoom={zoom}>
           <MapLayers>
             <MapTileLayer source={new olSource.OSM()} zIndex={1} />
-            <MapMarkerLayer coordinate={center} zIndex={0} />
+            {/*<MapMarkerLayer coordinate={center} zIndex={0} />*/}
             {getImageMarkers}
           </MapLayers>
           <MapControl>
@@ -59,7 +60,7 @@ const PhotoContainer = () => {
 
   const handleOpenGrid = () => {
     const grid = foldRemoteData(
-      imageRemoteData,
+      imageRemote,
       () => <NoData />,
       () => <Loader />,
       (error) => <Failure error={error} />,
